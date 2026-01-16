@@ -44,7 +44,7 @@ flowchart LR
   user[Website visitor] --> site[Vercel-hosted Next.js site]
   site --> api[Next.js API route /api/contact]
   api --> resend[Resend Emails API]
-  resend --> inbox[roger@ch3rry-pi3.com inbox]
+  resend --> inbox["roger@ch3rry-pi3.com inbox"]
 ```
 
 ### Why this approach works well

@@ -1,57 +1,42 @@
-# Ch3rry Pi3 AI Consulting Site
+# Ch3rry Pi3 Website
 
-Public marketing site built with Next.js (App Router), TypeScript, and Tailwind.
+Public marketing site for Ch3rry Pi3 AI Consulting.
 
-## Getting Started
+## Live Site
 
-Install dependencies (including Resend):
+https://www.ch3rry-pi3.com
 
-```bash
-npm install resend
+## Overview
+
+This repository contains the production website for the AI and machine learning consultancy, focused on fast performance, clear messaging, and a modern dark UI.
+
+## Features
+
+- Marketing pages: Home, Services, About, Contact
+- Responsive navigation with mobile menu
+- Contact form with server-side validation and Resend email delivery
+- Anti-spam honeypot and basic validation on both client and server
+- SEO metadata with canonical URLs (SITE_URL-aware)
+- App Router architecture with server components by default
+
+## Tech Stack
+
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- Resend (transactional email delivery)
+- Vercel (hosting and deployments)
+
+## Architecture (high level)
+
+```mermaid
+flowchart LR
+  visitor[Visitor] --> site[Next.js site]
+  site --> api["/api/contact"]
+  api --> resend[Resend]
+  resend --> inbox[Inbox]
 ```
 
-Run the development server:
+## Documentation
 
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-## Contact Form (Resend)
-
-### Environment variables (.env.local)
-
-Create a `.env.local` file with:
-
-```bash
-RESEND_API_KEY=your_resend_api_key
-CONTACT_TO_EMAIL=roger@ch3rry-pi3.com
-CONTACT_FROM_EMAIL=roger@ch3rry-pi3.com
-SITE_URL=https://www.ch3rry-pi3.com
-```
-
-Notes:
-- `RESEND_API_KEY` is required.
-- `CONTACT_TO_EMAIL` defaults to `roger@ch3rry-pi3.com`.
-- `CONTACT_FROM_EMAIL` is used only if it ends with `@ch3rry-pi3.com`.
-- If `CONTACT_FROM_EMAIL` is missing or not a `@ch3rry-pi3.com` address, the API will fall back to `onboarding@resend.dev` and log a warning.
-
-### Resend domain verification
-
-You can only send FROM `roger@ch3rry-pi3.com` after verifying `ch3rry-pi3.com` in Resend. Until then, allow the fallback to `onboarding@resend.dev` for testing.
-
-### Vercel environment variables
-
-Set the same variables in Vercel:
-
-- Project Settings > Environment Variables
-- Add `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, and `SITE_URL`
-
-### Test the API locally with curl
-
-```bash
-curl -X POST http://localhost:3000/api/contact \
-  -H "Content-Type: application/json" \
-  -d "{\"name\":\"Ava\",\"email\":\"ava@example.com\",\"company\":\"Acme\",\"message\":\"Looking for help with an AI roadmap.\",\"website\":\"\"}"
-```
+Setup, deployment, and DNS details live in `guides/setup.md`.
