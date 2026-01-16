@@ -97,9 +97,11 @@ export async function POST(request: Request) {
   const { data, error } = await resend.emails.send({
     from: fromEmail,
     to: toEmail,
-    replyTo: result.data.email,
     subject,
     html,
+    headers: {
+      "Reply-To": result.data.email,
+    },
   });
 
   if (error || !data?.id) {
