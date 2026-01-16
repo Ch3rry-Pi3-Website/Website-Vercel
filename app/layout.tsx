@@ -14,13 +14,26 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
-const siteUrl = process.env.SITE_URL;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: siteUrl ? new URL(siteUrl) : undefined,
-  title: "Ch3rry Pi3",
+  title: {
+    default: "Ch3rry Pi3 | AI & Machine Learning Consultancy",
+    template: "%s | Ch3rry Pi3",
+  },
   description:
-    "AI and machine learning consultancy helping teams ship reliable data products, models, and MLOps foundations.",
+    "Senior-led AI and machine learning delivery for startups, SMEs, and enterprise product teams.",
+  openGraph: {
+    type: "website",
+    siteName: "Ch3rry Pi3",
+    images: ["/opengraph-image.png"],
+    url: siteUrl,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/twitter-image.png"],
+  },
 };
 
 export default function RootLayout({

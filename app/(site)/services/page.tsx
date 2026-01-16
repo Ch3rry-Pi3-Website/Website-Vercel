@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Section from "@/components/Section";
 
-const pageTitle = "Services | Ch3rry Pi3";
+const pageTitle = "Services";
+const fullTitle = "Services | Ch3rry Pi3";
 const pageDescription =
   "Strategy, data engineering, model development, MLOps, and workshops designed for production-ready AI delivery.";
 const canonicalPath = "/services";
-const siteUrl = process.env.SITE_URL;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 const canonicalUrl = siteUrl
   ? new URL(canonicalPath, siteUrl).toString()
   : canonicalPath;
@@ -18,15 +19,14 @@ export const metadata: Metadata = {
     canonical: canonicalUrl,
   },
   openGraph: {
-    title: pageTitle,
+    title: fullTitle,
     description: pageDescription,
     url: siteUrl ? new URL(canonicalPath, siteUrl) : undefined,
     type: "website",
     siteName: "Ch3rry Pi3",
   },
   twitter: {
-    card: "summary",
-    title: pageTitle,
+    title: fullTitle,
     description: pageDescription,
   },
 };

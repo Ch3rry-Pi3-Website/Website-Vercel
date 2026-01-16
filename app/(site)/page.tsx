@@ -8,13 +8,13 @@ const pageTitle = "Ch3rry Pi3 | AI & Machine Learning Consultancy";
 const pageDescription =
   "Senior-led AI and machine learning delivery for startups, SMEs, and enterprise product teams.";
 const canonicalPath = "/";
-const siteUrl = process.env.SITE_URL;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 const canonicalUrl = siteUrl
   ? new URL(canonicalPath, siteUrl).toString()
   : canonicalPath;
 
 export const metadata: Metadata = {
-  title: pageTitle,
+  title: { absolute: pageTitle },
   description: pageDescription,
   alternates: {
     canonical: canonicalUrl,
@@ -27,7 +27,6 @@ export const metadata: Metadata = {
     siteName: "Ch3rry Pi3",
   },
   twitter: {
-    card: "summary",
     title: pageTitle,
     description: pageDescription,
   },
