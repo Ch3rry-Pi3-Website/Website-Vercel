@@ -3,6 +3,7 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
+import TwitterEmbed from "@/components/TwitterEmbed";
 
 const pageTitle = "Ch3rry Pi3 | AI & Machine Learning Consultancy";
 const pageDescription =
@@ -73,6 +74,19 @@ const processSteps = [
   },
 ];
 
+const launchTweet = `
+<blockquote class="twitter-tweet" data-theme="dark">
+  <p lang="en" dir="ltr">
+    Delighted to announce that the Ch3rry Pi3 website has now been launched!
+    <a href="https://t.co/Zm3NOeXR43">https://t.co/Zm3NOeXR43</a>
+  </p>
+  &mdash; Roger Campbell (@_Ch3rry_Pi3_)
+  <a href="https://twitter.com/_Ch3rry_Pi3_/status/2012282256027492447">
+    January 16, 2026
+  </a>
+</blockquote>
+`;
+
 export default function HomePage() {
   return (
     <>
@@ -132,6 +146,16 @@ export default function HomePage() {
               </p>
             </div>
           ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Latest updates"
+        title="Signals from the field"
+        description="Short updates from active engagements and applied research."
+      >
+        <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">
+          <TwitterEmbed html={launchTweet} />
         </div>
       </Section>
 

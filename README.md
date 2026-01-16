@@ -16,7 +16,7 @@ This repository contains the production website for the AI and machine learning 
 - Responsive navigation with mobile menu
 - Contact form with server-side validation and Resend email delivery
 - Anti-spam honeypot and basic validation on both client and server
-- SEO metadata with canonical URLs (SITE_URL-aware)
+- SEO metadata with canonical URLs (NEXT_PUBLIC_SITE_URL-aware)
 - App Router architecture with server components by default
 
 ## Tech Stack
@@ -26,6 +26,12 @@ This repository contains the production website for the AI and machine learning 
 - Tailwind CSS
 - Resend (transactional email delivery)
 - Vercel (hosting and deployments)
+
+## Social Previews
+
+- Open Graph image: `public/opengraph-image.png`
+- Twitter image: `public/twitter-image.png`
+- Quick check: `https://www.ch3rry-pi3.com/opengraph-image.png` and `https://www.ch3rry-pi3.com/twitter-image.png`
 
 ## Architecture (high level)
 
