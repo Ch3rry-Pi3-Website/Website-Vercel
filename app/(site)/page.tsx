@@ -50,8 +50,8 @@ export default function HomePage() {
       <Hero />
       <section className="py-6">
         <Container>
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200/70 bg-white/70 px-6 py-5 text-sm text-slate-600 shadow-sm">
-            <span className="font-semibold text-slate-800">Security-first</span>
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/10 bg-slate-900/70 px-6 py-5 text-sm text-slate-300 shadow-lg shadow-slate-950/40">
+            <span className="font-semibold text-white">Security-first</span>
             <span>Reproducible pipelines</span>
             <span>Measurable outcomes</span>
             <span>Senior-led delivery</span>
@@ -68,12 +68,12 @@ export default function HomePage() {
           {capabilityCards.map((capability) => (
             <div
               key={capability.title}
-              className="rounded-2xl border border-slate-200/70 bg-white/80 p-6 shadow-sm transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-md"
+              className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40 transition hover:-translate-y-1 hover:border-white/20"
             >
-              <h3 className="text-lg font-semibold text-slate-900">
+              <h3 className="text-lg font-semibold text-white">
                 {capability.title}
               </h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
+              <p className="mt-3 text-sm leading-6 text-slate-300">
                 {capability.description}
               </p>
             </div>
@@ -90,15 +90,15 @@ export default function HomePage() {
           {processSteps.map((step, index) => (
             <div
               key={step.title}
-              className="rounded-2xl border border-slate-200/70 bg-white/80 p-6 shadow-sm"
+              className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-300">
                 Step {index + 1}
               </p>
-              <h3 className="mt-3 text-lg font-semibold text-slate-900">
+              <h3 className="mt-3 text-lg font-semibold text-white">
                 {step.title}
               </h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
+              <p className="mt-3 text-sm leading-6 text-slate-300">
                 {step.description}
               </p>
             </div>
@@ -108,22 +108,22 @@ export default function HomePage() {
 
       <section className="py-16">
         <Container>
-          <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-slate-900 px-8 py-10 text-white shadow-lg md:flex-row md:items-center">
+          <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-white/10 bg-slate-900/80 px-8 py-10 text-white shadow-2xl shadow-slate-950/50 md:flex-row md:items-center">
             <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-emerald-200">
+              <p className="text-sm uppercase tracking-[0.3em] text-sky-300">
                 Ready to build
               </p>
               <h2 className="mt-3 text-3xl font-[var(--font-display)]">
                 Launch your next AI initiative with confidence.
               </h2>
-              <p className="mt-3 max-w-xl text-sm text-slate-200">
+              <p className="mt-3 max-w-xl text-sm text-slate-300">
                 We help teams move from ideas to production with a focused scope,
                 clear success metrics, and pragmatic delivery.
               </p>
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-emerald-300"
+              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:brightness-110"
             >
               Book a discovery call
             </Link>

@@ -31,27 +31,27 @@ export default function AboutPage() {
       description="Ch3rryPi3 AI Consulting partners with product and engineering leaders to deliver AI systems that are trustworthy, secure, and measurable."
     >
       <div className="grid gap-8 lg:grid-cols-3">
-        <div className="rounded-2xl border border-slate-200/70 bg-white/80 p-6 shadow-sm">
-          <h3 className="text-xl font-semibold text-slate-900">Our mission</h3>
-          <p className="mt-3 text-sm leading-6 text-slate-600">
+        <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">
+          <h3 className="text-xl font-semibold text-white">Our mission</h3>
+          <p className="mt-3 text-sm leading-6 text-slate-300">
             Help modern teams build AI capabilities that create durable value,
             without the fragility that often slows down ML initiatives.
           </p>
         </div>
-        <div className="rounded-2xl border border-slate-200/70 bg-white/80 p-6 shadow-sm">
-          <h3 className="text-xl font-semibold text-slate-900">Our approach</h3>
-          <p className="mt-3 text-sm leading-6 text-slate-600">
+        <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">
+          <h3 className="text-xl font-semibold text-white">Our approach</h3>
+          <p className="mt-3 text-sm leading-6 text-slate-300">
             We work shoulder-to-shoulder with your team, combining strategy,
             engineering, and delivery to create reliable AI systems.
           </p>
         </div>
-        <div className="rounded-2xl border border-slate-200/70 bg-white/80 p-6 shadow-sm">
-          <h3 className="text-xl font-semibold text-slate-900">Our values</h3>
-          <ul className="mt-3 space-y-3 text-sm text-slate-600">
+        <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">
+          <h3 className="text-xl font-semibold text-white">Our values</h3>
+          <ul className="mt-3 space-y-3 text-sm text-slate-300">
             {values.map((value) => (
               <li key={value.title}>
-                <p className="font-semibold text-slate-900">{value.title}</p>
-                <p className="mt-1 leading-6 text-slate-600">
+                <p className="font-semibold text-white">{value.title}</p>
+                <p className="mt-1 leading-6 text-slate-300">
                   {value.description}
                 </p>
               </li>

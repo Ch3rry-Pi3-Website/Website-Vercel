@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --font-display: var(--font-dm-serif-display);
+  --font-display: var(--font-space-grotesk);
 }
 
 @theme inline {
-  --font-sans: var(--font-sora);
+  --font-sans: var(--font-manrope);
 }

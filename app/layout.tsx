@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
-import { DM_Serif_Display, Sora } from "next/font/google";
+import { Manrope, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const sora = Sora({
-  variable: "--font-sora",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
   display: "swap",
 });
 
-const dmSerifDisplay = DM_Serif_Display({
-  variable: "--font-dm-serif-display",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: "400",
   display: "swap",
 });
 
@@ -32,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sora.variable} ${dmSerifDisplay.variable} bg-slate-50 font-sans text-slate-900 antialiased`}
+        className={`${manrope.variable} ${spaceGrotesk.variable} bg-slate-950 font-sans text-slate-100 antialiased`}
       >
         {children}
       </body>

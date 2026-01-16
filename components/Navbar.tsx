@@ -21,11 +21,11 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-200/70 bg-white/80 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b border-white/10 bg-slate-950/80 backdrop-blur">
       <Container>
         <div className="flex items-center justify-between py-4">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-lg font-[var(--font-display)] text-slate-900">
+            <span className="text-lg font-[var(--font-display)] text-transparent bg-gradient-to-r from-indigo-300 via-sky-300 to-emerald-200 bg-clip-text">
               Ch3rryPi3 AI
             </span>
           </Link>
@@ -37,10 +37,10 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-semibold transition ${
+                  className={`rounded-full px-3 py-1 text-sm font-semibold transition ${
                     isActive
-                      ? "text-slate-900"
-                      : "text-slate-600 hover:text-slate-900"
+                      ? "bg-white/10 text-white"
+                      : "text-slate-300 hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -49,7 +49,7 @@ export default function Navbar() {
             })}
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500"
+              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:brightness-110"
             >
               Get in touch
             </Link>
@@ -60,17 +60,15 @@ export default function Navbar() {
             aria-label="Toggle navigation menu"
             aria-expanded={isOpen}
             onClick={() => setIsOpen((prev) => !prev)}
-            className="inline-flex items-center justify-center rounded-full border border-slate-200/70 bg-white/80 p-2 text-slate-700 transition hover:border-slate-300 hover:text-slate-900 md:hidden"
+            className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200 transition hover:border-white/30 hover:text-white md:hidden"
           >
-            <span className="text-sm font-semibold">
-              {isOpen ? "Close" : "Menu"}
-            </span>
+            {isOpen ? "Close" : "Menu"}
           </button>
         </div>
       </Container>
 
       {isOpen ? (
-        <div className="border-t border-slate-200/70 bg-white/90 md:hidden">
+        <div className="border-t border-white/10 bg-slate-950/95 md:hidden">
           <Container className="py-4">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => {
@@ -79,10 +77,10 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`text-sm font-semibold transition ${
+                    className={`rounded-full px-3 py-2 text-sm font-semibold transition ${
                       isActive
-                        ? "text-slate-900"
-                        : "text-slate-600 hover:text-slate-900"
+                        ? "bg-white/10 text-white"
+                        : "text-slate-300 hover:text-white"
                     }`}
                   >
                     {link.label}
@@ -91,7 +89,7 @@ export default function Navbar() {
               })}
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:brightness-110"
               >
                 Get in touch
               </Link>

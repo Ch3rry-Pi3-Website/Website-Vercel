@@ -83,7 +83,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="text-sm font-semibold text-slate-700">
+        <label className="text-sm font-semibold text-slate-200">
           Name
           <input
             type="text"
@@ -91,16 +91,16 @@ export default function ContactForm() {
             autoComplete="name"
             value={form.name}
             onChange={handleChange}
-            className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+            className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/80 px-4 py-3 text-sm text-white outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-500/20"
             required
           />
           {errors.name ? (
-            <span className="mt-2 block text-xs text-rose-600">
+            <span className="mt-2 block text-xs text-rose-400">
               {errors.name}
             </span>
           ) : null}
         </label>
-        <label className="text-sm font-semibold text-slate-700">
+        <label className="text-sm font-semibold text-slate-200">
           Email
           <input
             type="email"
@@ -108,18 +108,18 @@ export default function ContactForm() {
             autoComplete="email"
             value={form.email}
             onChange={handleChange}
-            className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+            className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/80 px-4 py-3 text-sm text-white outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-500/20"
             required
           />
           {errors.email ? (
-            <span className="mt-2 block text-xs text-rose-600">
+            <span className="mt-2 block text-xs text-rose-400">
               {errors.email}
             </span>
           ) : null}
         </label>
       </div>
 
-      <label className="text-sm font-semibold text-slate-700">
+      <label className="text-sm font-semibold text-slate-200">
         Company (optional)
         <input
           type="text"
@@ -127,22 +127,22 @@ export default function ContactForm() {
           autoComplete="organization"
           value={form.company}
           onChange={handleChange}
-          className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+          className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/80 px-4 py-3 text-sm text-white outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-500/20"
         />
       </label>
 
-      <label className="text-sm font-semibold text-slate-700">
+      <label className="text-sm font-semibold text-slate-200">
         Message
         <textarea
           name="message"
           rows={5}
           value={form.message}
           onChange={handleChange}
-          className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+          className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/80 px-4 py-3 text-sm text-white outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-500/20"
           required
         />
         {errors.message ? (
-          <span className="mt-2 block text-xs text-rose-600">
+          <span className="mt-2 block text-xs text-rose-400">
             {errors.message}
           </span>
         ) : null}
@@ -163,7 +163,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex w-full items-center justify-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:bg-emerald-400"
+        className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === "submitting" ? "Sending..." : "Send message"}
       </button>
@@ -171,7 +171,7 @@ export default function ContactForm() {
       {statusMessage ? (
         <p
           className={`text-sm ${
-            status === "success" ? "text-emerald-700" : "text-rose-600"
+            status === "success" ? "text-emerald-300" : "text-rose-400"
           }`}
           role="status"
         >
