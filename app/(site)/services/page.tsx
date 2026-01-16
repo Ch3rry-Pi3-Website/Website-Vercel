@@ -1,5 +1,35 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Section from "@/components/Section";
+
+const pageTitle = "Services | Ch3rry Pi3";
+const pageDescription =
+  "Strategy, data engineering, model development, MLOps, and workshops designed for production-ready AI delivery.";
+const canonicalPath = "/services";
+const siteUrl = process.env.SITE_URL;
+const canonicalUrl = siteUrl
+  ? new URL(canonicalPath, siteUrl).toString()
+  : canonicalPath;
+
+export const metadata: Metadata = {
+  title: pageTitle,
+  description: pageDescription,
+  alternates: {
+    canonical: canonicalUrl,
+  },
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: siteUrl ? new URL(canonicalPath, siteUrl) : undefined,
+    type: "website",
+    siteName: "Ch3rry Pi3",
+  },
+  twitter: {
+    card: "summary",
+    title: pageTitle,
+    description: pageDescription,
+  },
+};
 
 const services = [
   {

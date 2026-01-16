@@ -6,7 +6,9 @@ export type ContactPayload = {
   website?: string;
 };
 
-export type ContactResponse = { ok: true } | { ok: false; error: string };
+export type ContactResponse =
+  | { ok: true; id: string }
+  | { ok: false; error: string };
 
 export type ContactValidationErrors = Partial<
   Record<keyof ContactPayload, string>
@@ -19,6 +21,7 @@ export type ContactValidationResult = {
 };
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const minMessageLength = 10;
 
 const normalizeString = (value: unknown) =>
   typeof value === "string" ? value.trim() : "";
@@ -55,6 +58,8 @@ export function validateContactPayload(payload: unknown): ContactValidationResul
 
   if (!data.message) {
     errors.message = "Please add a short message.";
+  } else if (data.message.length < minMessageLength) {
+    errors.message = `Message must be at least ${minMessageLength} characters.`;
   }
 
   if (data.website) {

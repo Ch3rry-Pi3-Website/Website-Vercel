@@ -1,5 +1,35 @@
+import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 import Section from "@/components/Section";
+
+const pageTitle = "Contact | Ch3rry Pi3";
+const pageDescription =
+  "Start a project with our AI and machine learning consultancy. Tell us about your goals and timeline.";
+const canonicalPath = "/contact";
+const siteUrl = process.env.SITE_URL;
+const canonicalUrl = siteUrl
+  ? new URL(canonicalPath, siteUrl).toString()
+  : canonicalPath;
+
+export const metadata: Metadata = {
+  title: pageTitle,
+  description: pageDescription,
+  alternates: {
+    canonical: canonicalUrl,
+  },
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: siteUrl ? new URL(canonicalPath, siteUrl) : undefined,
+    type: "website",
+    siteName: "Ch3rry Pi3",
+  },
+  twitter: {
+    card: "summary",
+    title: pageTitle,
+    description: pageDescription,
+  },
+};
 
 export default function ContactPage() {
   return (

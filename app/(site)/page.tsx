@@ -1,7 +1,37 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
+
+const pageTitle = "Ch3rry Pi3 | AI & Machine Learning Consultancy";
+const pageDescription =
+  "Senior-led AI and machine learning delivery for startups, SMEs, and enterprise product teams.";
+const canonicalPath = "/";
+const siteUrl = process.env.SITE_URL;
+const canonicalUrl = siteUrl
+  ? new URL(canonicalPath, siteUrl).toString()
+  : canonicalPath;
+
+export const metadata: Metadata = {
+  title: pageTitle,
+  description: pageDescription,
+  alternates: {
+    canonical: canonicalUrl,
+  },
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: siteUrl ? new URL(canonicalPath, siteUrl) : undefined,
+    type: "website",
+    siteName: "Ch3rry Pi3",
+  },
+  twitter: {
+    card: "summary",
+    title: pageTitle,
+    description: pageDescription,
+  },
+};
 
 const capabilityCards = [
   {

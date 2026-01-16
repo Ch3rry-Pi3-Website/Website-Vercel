@@ -67,7 +67,9 @@ export default function ContactForm() {
 
       if (!response.ok || !data.ok) {
         setStatus("error");
-        setStatusMessage("Something went wrong. Please try again.");
+        setStatusMessage(
+          data.ok ? "Something went wrong. Please try again." : data.error
+        );
         return;
       }
 
@@ -136,6 +138,7 @@ export default function ContactForm() {
         <textarea
           name="message"
           rows={5}
+          minLength={10}
           value={form.message}
           onChange={handleChange}
           className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/80 px-4 py-3 text-sm text-white outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-500/20"

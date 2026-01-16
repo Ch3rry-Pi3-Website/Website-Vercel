@@ -14,11 +14,11 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
+const siteUrl = process.env.SITE_URL;
+
 export const metadata: Metadata = {
-  title: {
-    default: "Ch3rryPi3 AI Consulting",
-    template: "%s | Ch3rryPi3 AI Consulting",
-  },
+  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
+  title: "Ch3rry Pi3",
   description:
     "AI and machine learning consultancy helping teams ship reliable data products, models, and MLOps foundations.",
 };
