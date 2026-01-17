@@ -4,6 +4,8 @@ export type ContactPayload = {
   company?: string;
   message: string;
   website?: string;
+  captchaAnswer?: string;
+  captchaToken?: string;
 };
 
 export type ContactResponse =
@@ -22,6 +24,28 @@ export type ContactValidationResult = {
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const minMessageLength = 10;
+const disposableEmailDomains = new Set([
+  "10minutemail.com",
+  "10minutemail.net",
+  "dispostable.com",
+  "mailinator.com",
+  "maildrop.cc",
+  "guerrillamail.com",
+  "guerrillamail.net",
+  "tempmail.com",
+  "temp-mail.org",
+  "yopmail.com",
+  "yopmail.fr",
+  "yopmail.net",
+  "trashmail.com",
+  "trashmail.net",
+  "getnada.com",
+  "dropmail.me",
+  "fakeinbox.com",
+  "getairmail.com",
+  "mohmal.com",
+  "mintemail.com",
+]);
 
 const normalizeString = (value: unknown) =>
   typeof value === "string" ? value.trim() : "";
@@ -35,6 +59,14 @@ const normalizeOptionalString = (value: unknown) => {
   return trimmed.length > 0 ? trimmed : undefined;
 };
 
+const getEmailDomain = (email: string) => {
+  const atIndex = email.lastIndexOf("@");
+  if (atIndex === -1) {
+    return "";
+  }
+  return email.slice(atIndex + 1).toLowerCase();
+};
+
 export function validateContactPayload(payload: unknown): ContactValidationResult {
   const data: ContactPayload = {
     name: normalizeString((payload as { name?: unknown })?.name),
@@ -42,6 +74,12 @@ export function validateContactPayload(payload: unknown): ContactValidationResul
     company: normalizeOptionalString((payload as { company?: unknown })?.company),
     message: normalizeString((payload as { message?: unknown })?.message),
     website: normalizeOptionalString((payload as { website?: unknown })?.website),
+    captchaAnswer: normalizeOptionalString(
+      (payload as { captchaAnswer?: unknown })?.captchaAnswer
+    ),
+    captchaToken: normalizeOptionalString(
+      (payload as { captchaToken?: unknown })?.captchaToken
+    ),
   };
 
   const errors: ContactValidationErrors = {};
@@ -54,6 +92,8 @@ export function validateContactPayload(payload: unknown): ContactValidationResul
     errors.email = "Please enter an email address.";
   } else if (!emailRegex.test(data.email)) {
     errors.email = "Please enter a valid email address.";
+  } else if (disposableEmailDomains.has(getEmailDomain(data.email))) {
+    errors.email = "Please use a work email address.";
   }
 
   if (!data.message) {
@@ -64,6 +104,10 @@ export function validateContactPayload(payload: unknown): ContactValidationResul
 
   if (data.website) {
     errors.website = "Spam detected.";
+  }
+
+  if (!data.captchaAnswer || !data.captchaToken) {
+    errors.captchaAnswer = "Please complete the human check.";
   }
 
   return {

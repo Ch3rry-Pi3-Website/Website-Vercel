@@ -4,6 +4,7 @@ import {
   type ContactResponse,
   validateContactPayload,
 } from "@/lib/validators/contact";
+import { verifyContactCaptcha } from "@/lib/security/contactCaptcha";
 
 const fallbackFromEmail = "onboarding@resend.dev";
 const allowedFromDomain = /@ch3rry-pi3\.com$/i;
@@ -63,6 +64,36 @@ const invalidResponse: ContactResponse = {
   error: "Invalid request.",
 };
 
+const rateLimitStore = new Map<string, number[]>();
+const rateLimitWindowMs = 10 * 60 * 1000;
+const rateLimitMax = 5;
+
+const getClientIp = (request: Request) => {
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0]?.trim() || "unknown";
+  }
+
+  return request.headers.get("x-real-ip") ?? "unknown";
+};
+
+const isRateLimited = (key: string) => {
+  const now = Date.now();
+  const windowStart = now - rateLimitWindowMs;
+  const timestamps = (rateLimitStore.get(key) ?? []).filter(
+    (timestamp) => timestamp > windowStart
+  );
+
+  if (timestamps.length >= rateLimitMax) {
+    rateLimitStore.set(key, timestamps);
+    return true;
+  }
+
+  timestamps.push(now);
+  rateLimitStore.set(key, timestamps);
+  return false;
+};
+
 export async function POST(request: Request) {
   console.log("Contact request received");
 
@@ -88,11 +119,39 @@ export async function POST(request: Request) {
     return NextResponse.json(invalidResponse, { status: 400 });
   }
 
+  const captchaCheck = verifyContactCaptcha(
+    result.data.captchaToken ?? "",
+    result.data.captchaAnswer ?? ""
+  );
+
+  if (!captchaCheck.ok) {
+    return NextResponse.json(
+      { ok: false, error: captchaCheck.error ?? "Human check failed." },
+      { status: 400 }
+    );
+  }
+
+  const ip = getClientIp(request);
+  const emailKey = `email:${result.data.email.toLowerCase()}`;
+  const ipKey = `ip:${ip}`;
+
+  if (isRateLimited(emailKey) || isRateLimited(ipKey)) {
+    return NextResponse.json(
+      { ok: false, error: "Too many requests. Please try again later." },
+      { status: 429, headers: { "Retry-After": "600" } }
+    );
+  }
+
   const resend = new Resend(process.env.RESEND_API_KEY);
   const toEmail = getToEmail();
   const fromEmail = getFromEmail();
   const subject = `New enquiry from ${result.data.name} - Ch3rry Pi3`;
-  const html = buildEmailHtml(result.data);
+  const html = buildEmailHtml({
+    name: result.data.name,
+    email: result.data.email,
+    company: result.data.company,
+    message: result.data.message,
+  });
 
   const { data, error } = await resend.emails.send({
     from: fromEmail,

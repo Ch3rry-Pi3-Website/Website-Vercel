@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   type ContactResponse,
   type ContactValidationErrors,
@@ -13,6 +13,7 @@ type ContactFormState = {
   company: string;
   message: string;
   website: string;
+  captchaAnswer: string;
 };
 
 const initialState: ContactFormState = {
@@ -21,15 +22,52 @@ const initialState: ContactFormState = {
   company: "",
   message: "",
   website: "",
+  captchaAnswer: "",
 };
 
 export default function ContactForm() {
   const [form, setForm] = useState<ContactFormState>(initialState);
+  const [captchaQuestion, setCaptchaQuestion] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaError, setCaptchaError] = useState("");
+  const [captchaLoading, setCaptchaLoading] = useState(false);
   const [errors, setErrors] = useState<ContactValidationErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
     "idle"
   );
   const [statusMessage, setStatusMessage] = useState("");
+
+  const loadCaptcha = async () => {
+    setCaptchaLoading(true);
+    setCaptchaError("");
+
+    try {
+      const response = await fetch("/api/contact/challenge", {
+        method: "GET",
+      });
+      const data = (await response.json()) as
+        | { ok: true; question: string; token: string }
+        | { ok: false; error: string };
+
+      if (!response.ok || !data.ok) {
+        setCaptchaError(
+          data.ok ? "Unable to load the human check." : data.error
+        );
+        return;
+      }
+
+      setCaptchaQuestion(data.question);
+      setCaptchaToken(data.token);
+    } catch {
+      setCaptchaError("Unable to load the human check.");
+    } finally {
+      setCaptchaLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    void loadCaptcha();
+  }, []);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -39,6 +77,10 @@ export default function ContactForm() {
     if (errors[name as keyof ContactValidationErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
+
+    if (name === "captchaAnswer") {
+      setCaptchaError("");
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -46,7 +88,7 @@ export default function ContactForm() {
     setStatus("idle");
     setStatusMessage("");
 
-    const result = validateContactPayload(form);
+    const result = validateContactPayload({ ...form, captchaToken });
     setErrors(result.errors);
 
     if (!result.ok) {
@@ -74,6 +116,9 @@ export default function ContactForm() {
       }
 
       setForm(initialState);
+      setCaptchaQuestion("");
+      setCaptchaToken("");
+      void loadCaptcha();
       setStatus("success");
       setStatusMessage("Thanks for reaching out. We will reply shortly.");
     } catch {
@@ -162,6 +207,42 @@ export default function ContactForm() {
           tabIndex={-1}
         />
       </label>
+
+      <div className="rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+          Human check
+        </p>
+        <div className="mt-3 flex flex-wrap items-center gap-3">
+          <span className="text-sm font-semibold text-white">
+            {captchaLoading
+              ? "Loading..."
+              : captchaQuestion || "Check unavailable"}
+          </span>
+          <button
+            type="button"
+            onClick={loadCaptcha}
+            className="rounded-full border border-white/10 px-3 py-1 text-xs font-semibold text-slate-300 transition hover:border-white/30 hover:text-white"
+          >
+            Refresh
+          </button>
+        </div>
+        <label className="mt-4 block text-sm font-semibold text-slate-200">
+          Answer
+          <input
+            type="text"
+            name="captchaAnswer"
+            value={form.captchaAnswer}
+            onChange={handleChange}
+            className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/80 px-4 py-3 text-sm text-white outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-500/20"
+            required
+          />
+        </label>
+        {errors.captchaAnswer || captchaError ? (
+          <span className="mt-2 block text-xs text-rose-400">
+            {captchaError || errors.captchaAnswer}
+          </span>
+        ) : null}
+      </div>
 
       <button
         type="submit"
