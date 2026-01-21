@@ -36,12 +36,14 @@ export default function ContactPage() {
     <Section
       eyebrow="Get in touch"
       title="Let&apos;s discuss your artificial intelligence (AI) initiative"
+      introClassName="max-w-none"
       description={
         <>
           Tell us about your{" "}
           <span className="term-emphasis">product goals</span>, your{" "}
-          <span className="term-emphasis">data readiness</span>, and timeline.
-          We typically reply within two business days.
+          <span className="term-emphasis">data readiness</span>, and{" "}
+          <span className="term-emphasis">timeline</span>. We typically reply
+          within two business days.
         </>
       }
     >
@@ -70,8 +72,8 @@ export default function ContactPage() {
                 Ways to work together
               </p>
               <p>
-                Short strategy sprints, delivery partnerships, and team
-                enablement sessions
+                Rapid planning workshops, build-and-deliver projects, and team
+                training sessions
               </p>
             </div>
           </div>

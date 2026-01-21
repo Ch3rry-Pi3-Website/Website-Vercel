@@ -88,6 +88,12 @@ const launchTweet = `
 </blockquote>
 `;
 
+const latestTweet = `
+<blockquote class="twitter-tweet" data-theme="dark">
+  <a href="https://x.com/_Ch3rry_Pi3_/status/2014040213182402999"></a>
+</blockquote>
+`;
+
 export default function HomePage() {
   return (
     <>
@@ -168,8 +174,13 @@ export default function HomePage() {
         title="Signals from the field"
         description="Short updates from active engagements and applied research."
       >
-        <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">
-          <TwitterEmbed html={launchTweet} />
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">
+            <TwitterEmbed html={launchTweet} />
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">
+            <TwitterEmbed html={latestTweet} />
+          </div>
         </div>
       </Section>
 

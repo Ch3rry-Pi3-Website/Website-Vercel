@@ -7,6 +7,7 @@ type SectionProps = {
   description?: ReactNode;
   children?: ReactNode;
   className?: string;
+  introClassName?: string;
 };
 
 export default function Section({
@@ -15,11 +16,12 @@ export default function Section({
   description,
   children,
   className = "",
+  introClassName = "max-w-2xl",
 }: SectionProps) {
   return (
     <section className={`py-16 sm:py-20 ${className}`}>
       <Container>
-        <div className="max-w-2xl">
+        <div className={introClassName}>
           {eyebrow ? (
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sky-300">
               {eyebrow}
