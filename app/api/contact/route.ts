@@ -39,11 +39,13 @@ const buildEmailHtml = (payload: {
   name: string;
   email: string;
   company?: string;
+  phone?: string;
   message: string;
 }) => {
   const companyLine = payload.company
     ? escapeHtml(payload.company)
     : "Not provided";
+  const phoneLine = payload.phone ? escapeHtml(payload.phone) : "Not provided";
 
   return `
     <div style="font-family: Arial, sans-serif; line-height: 1.6;">
@@ -51,6 +53,7 @@ const buildEmailHtml = (payload: {
       <p><strong>Name:</strong> ${escapeHtml(payload.name)}</p>
       <p><strong>Email:</strong> ${escapeHtml(payload.email)}</p>
       <p><strong>Company:</strong> ${companyLine}</p>
+      <p><strong>Phone:</strong> ${phoneLine}</p>
       <p><strong>Message:</strong></p>
       <pre style="white-space: pre-wrap; font-family: Arial, sans-serif;">${escapeHtml(
         payload.message
@@ -150,6 +153,7 @@ export async function POST(request: Request) {
     name: result.data.name,
     email: result.data.email,
     company: result.data.company,
+    phone: result.data.phone,
     message: result.data.message,
   });
 

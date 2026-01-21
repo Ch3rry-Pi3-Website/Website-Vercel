@@ -5,9 +5,10 @@ import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import TwitterEmbed from "@/components/TwitterEmbed";
 
-const pageTitle = "Ch3rry Pi3 | AI & Machine Learning Consultancy";
+const pageTitle =
+  "Ch3rry Pi3 | Artificial Intelligence (AI) & Machine Learning Consultancy";
 const pageDescription =
-  "Senior-led AI and machine learning delivery for startups, SMEs, and enterprise product teams.";
+  "Senior-led artificial intelligence (AI) and machine learning delivery for startups, small- and medium-sized enterprises (SMEs), and enterprise product teams.";
 const canonicalPath = "/";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 const canonicalUrl = siteUrl
@@ -37,7 +38,7 @@ const capabilityCards = [
   {
     title: "Strategy and product alignment",
     description:
-      "Clarify the highest-impact use cases, define ROI, and build a delivery roadmap that your team can execute.",
+      "Clarify the highest-impact use cases, define return on investment (ROI), and build a delivery roadmap that your team can execute.",
   },
   {
     title: "Data engineering foundations",
@@ -47,7 +48,7 @@ const capabilityCards = [
   {
     title: "Model development to deployment",
     description:
-      "Build, evaluate, and ship ML and LLM systems that are measurable, secure, and easy to maintain.",
+      "Build, evaluate, and deliver machine learning (ML) and large language model (LLM) systems that are measurable, secure, and easy to maintain.",
   },
 ];
 
@@ -105,7 +106,12 @@ export default function HomePage() {
       <Section
         eyebrow="What we do"
         title="Hands-on AI delivery for modern product teams"
-        description="From strategy to production, we build AI systems that earn trust and drive measurable business value."
+        description={
+          <>
+            From strategy to production, we build AI systems that earn trust and
+            drive <span className="term-emphasis">measurable business value</span>.
+          </>
+        }
       >
         <div className="grid gap-6 md:grid-cols-3">
           {capabilityCards.map((capability) => (
@@ -127,7 +133,15 @@ export default function HomePage() {
       <Section
         eyebrow="How we work"
         title="A clear, senior-led delivery process"
-        description="We pair strategic guidance with implementation so your team ships confidently and quickly."
+        description={
+          <>
+            We pair strategic guidance with implementation through{" "}
+            <span className="term-emphasis">
+              Agile software delivery sprints
+            </span>{" "}
+            so your team delivers confidently and quickly.
+          </>
+        }
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {processSteps.map((step, index) => (
@@ -170,15 +184,16 @@ export default function HomePage() {
                 Launch your next AI initiative with confidence.
               </h2>
               <p className="mt-3 max-w-xl text-sm text-slate-300">
-                We help teams move from ideas to production with a focused scope,
-                clear success metrics, and pragmatic delivery.
+                We help teams move from ideas to production with a focused
+                scope, <span className="term-emphasis">clear success metrics</span>,
+                and pragmatic delivery.
               </p>
             </div>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:brightness-110"
             >
-              Book a discovery call
+              Schedule an intro call
             </Link>
           </div>
         </Container>

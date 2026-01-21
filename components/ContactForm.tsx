@@ -11,6 +11,7 @@ type ContactFormState = {
   name: string;
   email: string;
   company: string;
+  phone: string;
   message: string;
   website: string;
   captchaAnswer: string;
@@ -20,6 +21,7 @@ const initialState: ContactFormState = {
   name: "",
   email: "",
   company: "",
+  phone: "",
   message: "",
   website: "",
   captchaAnswer: "",
@@ -166,17 +168,35 @@ export default function ContactForm() {
         </label>
       </div>
 
-      <label className="text-sm font-semibold text-slate-200">
-        Company (optional)
-        <input
-          type="text"
-          name="company"
-          autoComplete="organization"
-          value={form.company}
-          onChange={handleChange}
-          className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/80 px-4 py-3 text-sm text-white outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-500/20"
-        />
-      </label>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="text-sm font-semibold text-slate-200">
+          Company (optional)
+          <input
+            type="text"
+            name="company"
+            autoComplete="organization"
+            value={form.company}
+            onChange={handleChange}
+            className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/80 px-4 py-3 text-sm text-white outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-500/20"
+          />
+        </label>
+        <label className="text-sm font-semibold text-slate-200">
+          Phone (optional)
+          <input
+            type="tel"
+            name="phone"
+            autoComplete="tel"
+            value={form.phone}
+            onChange={handleChange}
+            className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/80 px-4 py-3 text-sm text-white outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-500/20"
+          />
+          {errors.phone ? (
+            <span className="mt-2 block text-xs text-rose-400">
+              {errors.phone}
+            </span>
+          ) : null}
+        </label>
+      </div>
 
       <label className="text-sm font-semibold text-slate-200">
         Message

@@ -15,9 +15,10 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-const siteTitle = "Ch3rry Pi3 | AI & Machine Learning Consultancy";
+const siteTitle =
+  "Ch3rry Pi3 | Artificial Intelligence (AI) & Machine Learning Consultancy";
 const siteDescription =
-  "Senior-led AI and machine learning delivery for startups, SMEs, and enterprise product teams.";
+  "Senior-led artificial intelligence (AI) and machine learning delivery for startups, small- and medium-sized enterprises (SMEs), and enterprise product teams.";
 
 export const metadata: Metadata = {
   metadataBase: siteUrl ? new URL(siteUrl) : undefined,

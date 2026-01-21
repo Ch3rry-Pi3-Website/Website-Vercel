@@ -9,7 +9,6 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -26,7 +25,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between py-4">
           <Link href="/" className="flex items-center gap-2">
             <span className="text-lg font-[var(--font-display)] text-transparent bg-gradient-to-r from-indigo-300 via-sky-300 to-emerald-200 bg-clip-text">
-              Ch3rryPi3 AI
+              Ch3rryPi3 Artificial Intelligence (AI)
             </span>
           </Link>
 

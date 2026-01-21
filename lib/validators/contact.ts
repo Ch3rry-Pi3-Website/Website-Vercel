@@ -2,6 +2,7 @@ export type ContactPayload = {
   name: string;
   email: string;
   company?: string;
+  phone?: string;
   message: string;
   website?: string;
   captchaAnswer?: string;
@@ -23,7 +24,9 @@ export type ContactValidationResult = {
 };
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phoneRegex = /^[+\d\s().-]+$/;
 const minMessageLength = 10;
+const minPhoneDigits = 7;
 const disposableEmailDomains = new Set([
   "10minutemail.com",
   "10minutemail.net",
@@ -72,6 +75,7 @@ export function validateContactPayload(payload: unknown): ContactValidationResul
     name: normalizeString((payload as { name?: unknown })?.name),
     email: normalizeString((payload as { email?: unknown })?.email),
     company: normalizeOptionalString((payload as { company?: unknown })?.company),
+    phone: normalizeOptionalString((payload as { phone?: unknown })?.phone),
     message: normalizeString((payload as { message?: unknown })?.message),
     website: normalizeOptionalString((payload as { website?: unknown })?.website),
     captchaAnswer: normalizeOptionalString(
@@ -100,6 +104,13 @@ export function validateContactPayload(payload: unknown): ContactValidationResul
     errors.message = "Please add a short message.";
   } else if (data.message.length < minMessageLength) {
     errors.message = `Message must be at least ${minMessageLength} characters.`;
+  }
+
+  if (data.phone) {
+    const digitCount = data.phone.replace(/\D/g, "").length;
+    if (!phoneRegex.test(data.phone) || digitCount < minPhoneDigits) {
+      errors.phone = "Please enter a valid phone number.";
+    }
   }
 
   if (data.website) {

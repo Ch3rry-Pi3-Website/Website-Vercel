@@ -7,3 +7,9 @@
 @theme inline {
   --font-sans: var(--font-manrope);
 }
+
+@layer utilities {
+  .term-emphasis {
+    @apply font-semibold text-sky-300;
+  }
+}

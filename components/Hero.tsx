@@ -2,10 +2,10 @@ import Link from "next/link";
 import Container from "@/components/Container";
 
 const focusAreas = [
-  "Product strategy and ROI modeling",
+  "Product strategy and return on investment (ROI) modeling",
   "Data pipelines and feature foundations",
   "Custom model development and evaluation",
-  "MLOps and LLMOps for production reliability",
+  "Machine learning operations (MLOps) and large language model operations (LLMOps) for production reliability",
 ];
 
 export default function Hero() {
@@ -15,15 +15,16 @@ export default function Hero() {
         <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sky-300">
-              AI and ML consulting
+              Artificial intelligence (AI) and machine learning (ML) consulting
             </p>
             <h1 className="mt-4 text-4xl font-[var(--font-display)] text-white sm:text-5xl">
               Deliver AI systems that your team can trust and scale.
             </h1>
             <p className="mt-5 max-w-xl text-base leading-7 text-slate-300">
-              We partner with startups, SMEs, and enterprise teams to turn data
-              into production-ready AI products, from strategy through
-              deployment.
+              We partner with startups, small- and medium-sized enterprises
+              (SMEs), and enterprise teams to turn data into{" "}
+              <span className="term-emphasis">production-ready</span> AI
+              products, from strategy through deployment.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
@@ -65,8 +66,8 @@ export default function Hero() {
                   Senior delivery pods for critical AI initiatives.
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-slate-300">
-                  We embed with your team to ship reliable models, workflows,
-                  and infrastructure that hold up in production.
+                  We embed with your team to deliver reliable models,
+                  workflows, and infrastructure that hold up in production.
                 </p>
               </div>
 
@@ -93,7 +94,7 @@ export default function Hero() {
                       Evaluation
                     </span>
                     <span className="rounded-xl border border-emerald-400/40 bg-emerald-500/10 px-3 py-2 text-center">
-                      MLOps
+                      Machine learning operations (MLOps)
                     </span>
                     <span className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-center">
                       Enablement

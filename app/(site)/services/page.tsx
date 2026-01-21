@@ -5,7 +5,7 @@ import Section from "@/components/Section";
 const pageTitle = "Services";
 const fullTitle = "Services | Ch3rry Pi3";
 const pageDescription =
-  "Strategy, data engineering, model development, MLOps, and workshops designed for production-ready AI delivery.";
+  "Strategy, data engineering, model development, machine learning operations (MLOps), and workshops designed for production-ready artificial intelligence (AI) delivery.";
 const canonicalPath = "/services";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 const canonicalUrl = siteUrl
@@ -33,12 +33,12 @@ export const metadata: Metadata = {
 
 const services = [
   {
-    title: "AI strategy and roadmap",
+    title: "Artificial intelligence (AI) strategy and roadmap",
     description:
       "Define the right use cases, build a delivery plan, and align stakeholders around measurable impact.",
     outcomes: [
       "Prioritized use-case backlog",
-      "Build vs buy decision framework",
+      "In-house versus partner decision guide",
       "Risk and compliance checklist",
     ],
   },
@@ -55,7 +55,7 @@ const services = [
   {
     title: "Model development and evaluation",
     description:
-      "Build custom ML and LLM solutions with transparent evaluation and repeatable experiments.",
+      "Build custom machine learning (ML) and large language model (LLM) solutions with transparent evaluation and repeatable experiments.",
     outcomes: [
       "Offline and online evaluation plans",
       "Model performance benchmarks",
@@ -63,9 +63,9 @@ const services = [
     ],
   },
   {
-    title: "MLOps and LLMOps",
+    title: "Machine learning operations (MLOps) and large language model operations (LLMOps)",
     description:
-      "Ship models safely with CI/CD, monitoring, and governance that hold up in production.",
+      "Deploy models safely with continuous integration / continuous delivery (CI/CD), monitoring, and governance that hold up in production.",
     outcomes: [
       "Release automation",
       "Drift and quality monitoring",
@@ -89,7 +89,16 @@ export default function ServicesPage() {
     <Section
       eyebrow="Services"
       title="Everything you need to move from prototype to production"
-      description="We partner with startups, SMEs, and enterprise teams to deliver the AI capabilities that matter most."
+      description={
+        <>
+          We partner with startups, small- and medium-sized enterprises (SMEs),
+          and enterprise teams to deliver the{" "}
+          <span className="term-emphasis">
+            artificial intelligence (AI) capabilities
+          </span>{" "}
+          that matter most.
+        </>
+      }
     >
       <div className="grid gap-6 lg:grid-cols-2">
         {services.map((service) => (
@@ -126,7 +135,7 @@ export default function ServicesPage() {
             Next step
           </p>
           <h2 className="mt-3 text-2xl font-[var(--font-display)]">
-            Let&apos;s map your AI roadmap together.
+            Let&apos;s map your artificial intelligence (AI) roadmap together.
           </h2>
           <p className="mt-3 max-w-xl text-sm text-slate-300">
             We&apos;ll review your goals, data readiness, and delivery constraints

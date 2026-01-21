@@ -4,7 +4,7 @@ import Container from "@/components/Container";
 type SectionProps = {
   eyebrow?: string;
   title: string;
-  description?: string;
+  description?: ReactNode;
   children?: ReactNode;
   className?: string;
 };

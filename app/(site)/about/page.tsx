@@ -4,7 +4,7 @@ import Section from "@/components/Section";
 const pageTitle = "About";
 const fullTitle = "About | Ch3rry Pi3";
 const pageDescription =
-  "A senior AI consultancy focused on reliability, security, reproducibility, and measurable outcomes.";
+  "A senior artificial intelligence (AI) consultancy focused on reliability, security, reproducibility, and measurable outcomes.";
 const canonicalPath = "/about";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 const canonicalUrl = siteUrl
@@ -58,14 +58,22 @@ export default function AboutPage() {
     <Section
       eyebrow="About"
       title="A small senior team focused on outcomes"
-      description="Ch3rryPi3 AI Consulting partners with product and engineering leaders to deliver AI systems that are trustworthy, secure, and measurable."
+      description={
+        <>
+          Ch3rryPi3 Artificial Intelligence (AI) Consulting partners with
+          product and engineering leaders to deliver AI systems that are{" "}
+          <span className="term-emphasis">trustworthy</span>, secure, and
+          measurable.
+        </>
+      }
     >
       <div className="grid gap-8 lg:grid-cols-3">
         <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">
           <h3 className="text-xl font-semibold text-white">Our mission</h3>
           <p className="mt-3 text-sm leading-6 text-slate-300">
-            Help modern teams build AI capabilities that create durable value,
-            without the fragility that often slows down ML initiatives.
+            Help modern teams build artificial intelligence (AI) capabilities
+            that create durable value, without the fragility that often slows
+            down machine learning (ML) initiatives.
           </p>
         </div>
         <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">

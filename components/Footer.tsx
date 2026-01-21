@@ -5,7 +5,6 @@ const footerLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function Footer() {
@@ -17,10 +16,11 @@ export default function Footer() {
         <div className="flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-lg font-[var(--font-display)] text-transparent bg-gradient-to-r from-indigo-200 via-sky-200 to-emerald-200 bg-clip-text">
-              Ch3rryPi3 AI Consulting
+              Ch3rryPi3 Artificial Intelligence (AI) Consulting
             </p>
             <p className="mt-2 text-sm text-slate-400">
-              AI and ML delivery for product-focused teams.
+              Artificial intelligence (AI) and machine learning (ML) delivery
+              for product-focused teams.
             </p>
           </div>
           <div className="flex flex-wrap gap-4 text-sm font-semibold text-slate-300">
