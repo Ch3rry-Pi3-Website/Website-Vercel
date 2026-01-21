@@ -89,6 +89,7 @@ export default function ServicesPage() {
     <Section
       eyebrow="Services"
       title="Everything you need to move from prototype to production"
+      introClassName="max-w-none"
       description={
         <>
           We partner with startups, small- and medium-sized enterprises (SMEs),

@@ -186,9 +186,9 @@ export default function HomePage() {
       </Section>
 
       <Section
-        eyebrow="Latest updates"
-        title="Signals from the field"
-        description="Short updates from active engagements and applied research."
+        eyebrow="Media highlights"
+        title="What we’re sharing"
+        description="Fresh posts, announcements, and reposts from our latest work."
       >
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">

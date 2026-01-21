@@ -58,12 +58,14 @@ export default function AboutPage() {
     <Section
       eyebrow="About"
       title="A small senior team focused on outcomes"
+      introClassName="max-w-none"
       description={
         <>
           Ch3rryPi3 Artificial Intelligence (AI) Consulting partners with
           product and engineering leaders to deliver AI systems that are{" "}
-          <span className="term-emphasis">trustworthy</span>, secure, and
-          measurable.
+          <span className="term-emphasis">trustworthy</span>,{" "}
+          <span className="term-emphasis">secure</span>, and{" "}
+          <span className="term-emphasis">measurable</span>.
         </>
       }
     >
@@ -88,7 +90,7 @@ export default function AboutPage() {
           <ul className="mt-3 space-y-3 text-sm text-slate-300">
             {values.map((value) => (
               <li key={value.title}>
-                <p className="font-semibold text-white">{value.title}</p>
+                <p className="term-emphasis">{value.title}</p>
                 <p className="mt-1 leading-6 text-slate-300">
                   {value.description}
                 </p>
