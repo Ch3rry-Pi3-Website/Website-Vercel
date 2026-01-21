@@ -15,7 +15,7 @@ This repository contains the production website for the AI and machine learning 
 - Marketing pages: Home, Services, About, Contact
 - Responsive navigation with mobile menu
 - Contact form with server-side validation and Resend email delivery
-- Anti-spam honeypot and basic validation on both client and server
+- Anti-spam honeypot, human-check challenge, rate limiting, and disposable email filtering
 - SEO metadata with canonical URLs (NEXT_PUBLIC_SITE_URL-aware)
 - App Router architecture with server components by default
 

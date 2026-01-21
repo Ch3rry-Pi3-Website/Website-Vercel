@@ -6,6 +6,7 @@ This guide documents the end-to-end setup we just completed:
 * Hosted on Vercel
 * GitHub repo connected for auto-deployments
 * Contact form that sends emails via Resend
+* Human-check challenge + rate limiting + disposable email filtering
 * Resend domain verification via GoDaddy DNS (DKIM + SPF + MX)
 * Required environment variables for local dev and Vercel
 
@@ -299,8 +300,11 @@ Expected behaviour:
 * Accepts POST JSON
 * Validates required fields (name, email, message)
 * Honeypot spam field (e.g. `website`)
+* Human-check challenge (captcha) with signed token
+* Blocks disposable email domains
+* Rate limits by IP and email address
 * Sends email via Resend
-* Returns `{ ok: true }` or `{ ok: false, error }`
+* Returns `{ ok: true, id }` or `{ ok: false, error }`
 
 Important implementation detail you hit:
 
@@ -323,6 +327,8 @@ Contact page should:
 
 * Collect: name, email, company (optional), message
 * Include hidden honeypot field: `website`
+* Fetch and display a human-check question with a signed token
+* Submit `captchaAnswer` and `captchaToken`
 * POST to `/api/contact`
 * Show success and error messages
 * Disable submit while sending
@@ -344,15 +350,17 @@ Create file in project root:
 
 ```env
 RESEND_API_KEY=re_XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+CONTACT_FORM_SECRET=replace_with_strong_secret
 CONTACT_FROM_EMAIL=roger@ch3rry-pi3.com
 CONTACT_TO_EMAIL=roger@ch3rry-pi3.com
-SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
 Notes:
 
 * `.env.local` is automatically ignored by git in a standard Next.js project.
-* `SITE_URL` is optional but helpful for canonical URLs and metadata.
+* `CONTACT_FORM_SECRET` is optional. If unset, the API falls back to `RESEND_API_KEY` for signing the human-check token.
+* `NEXT_PUBLIC_SITE_URL` is optional but helpful for canonical URLs and metadata.
 
 ### 12.2 Vercel Environment Variables
 
@@ -361,12 +369,13 @@ Vercel → Project → Settings → Environment Variables
 Add these (All Environments):
 
 * `RESEND_API_KEY` = `re_...` (your Resend API key)
+* `CONTACT_FORM_SECRET` = strong random string (recommended)
 * `CONTACT_FROM_EMAIL` = `roger@ch3rry-pi3.com`
 * `CONTACT_TO_EMAIL` = `roger@ch3rry-pi3.com`
 
 Optional:
 
-* `SITE_URL` = `https://ch3rry-pi3.com` (once domain is connected to Vercel)
+* `NEXT_PUBLIC_SITE_URL` = `https://ch3rry-pi3.com` (once domain is connected to Vercel)
 
   * or your current `https://<project>.vercel.app`
 
@@ -405,15 +414,23 @@ Then submit the form at:
 
 ### Curl test (local)
 
+Fetch a human-check challenge first:
+
+```powershell
+curl http://localhost:3000/api/contact/challenge
+```
+
+Use the returned `question` to compute the answer, then submit the form with the `captchaToken`.
+
 ```powershell
 curl -X POST http://localhost:3000/api/contact `
   -H "Content-Type: application/json" `
-  -d '{"name":"Test User","email":"test@example.com","company":"ACME","message":"Hello from curl","website":""}'
+  -d '{"name":"Test User","email":"test@example.com","company":"ACME","message":"Hello from curl","website":"","captchaAnswer":"7","captchaToken":"REPLACE_WITH_TOKEN_FROM_CHALLENGE"}'
 ```
 
 Expected response:
 
-* `{"ok":true,...}`
+* `{"ok":true,"id":"..."}` or an error with `ok: false`
 
 You should receive an email at:
 
@@ -453,17 +470,17 @@ Minimum recommended:
 * description
 * Open Graph
 * Twitter cards
-* canonical URL / alternates (best once `SITE_URL` is set)
+* canonical URL / alternates (best once `NEXT_PUBLIC_SITE_URL` is set)
 
 Suggested pattern:
 
-* `app/layout.tsx` sets `metadataBase` using `SITE_URL` if available
+* `app/layout.tsx` sets `metadataBase` using `NEXT_PUBLIC_SITE_URL` if available
 * each page sets its own title/description
 
 If Codex already added metadata, your task is:
 
 * verify each page has correct title/description
-* ensure canonical URLs use `SITE_URL` where possible
+* ensure canonical URLs use `NEXT_PUBLIC_SITE_URL` where possible
 
 
 
@@ -476,6 +493,7 @@ If Codex already added metadata, your task is:
 * Env vars set:
 
   * RESEND_API_KEY
+  * CONTACT_FORM_SECRET
   * CONTACT_FROM_EMAIL
   * CONTACT_TO_EMAIL
 
@@ -528,9 +546,10 @@ Create `.env.example`:
 
 ```env
 RESEND_API_KEY=re_XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+CONTACT_FORM_SECRET=replace_with_strong_secret
 CONTACT_FROM_EMAIL=roger@ch3rry-pi3.com
 CONTACT_TO_EMAIL=roger@ch3rry-pi3.com
-SITE_URL=https://ch3rry-pi3.com
+NEXT_PUBLIC_SITE_URL=https://ch3rry-pi3.com
 ```
 
 This helps others know what variables are needed without exposing secrets.
