@@ -94,17 +94,16 @@ const latestTweet = `
     &#x1F680; Pimp My Portfolio! (Project 1)
     <br><br>
     If you're applying for cloud / infra roles, toy projects won't cut it.
-    <br>
-    I'm starting a Pimp My Portfolio series: real, interview-ready builds you can actually explain.
     <br><br>
-    &#x2705; Project 1: Azure 3-Tier VNet (IaC)
+    I'm starting a Pimp My Portfolio series: real, interview-ready builds you
+    can actually explain.
     <br><br>
     &#x1F517; Repo:
     <a href="https://t.co/kysZrlHXi9">https://t.co/kysZrlHXi9</a>
-    <a href="https://t.co/nmvwXxskxQ">pic.twitter.com/nmvwXxskxQ</a>
+    <a href="https://t.co/bUkGzctv8L">pic.twitter.com/bUkGzctv8L</a>
   </p>
   &mdash; Roger Campbell (@_Ch3rry_Pi3_)
-  <a href="https://twitter.com/_Ch3rry_Pi3_/status/2014040213182402999?ref_src=twsrc%5Etfw">
+  <a href="https://twitter.com/_Ch3rry_Pi3_/status/2014109141590065643?ref_src=twsrc%5Etfw">
     January 21, 2026
   </a>
 </blockquote>
