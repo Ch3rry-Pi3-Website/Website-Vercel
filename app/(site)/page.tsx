@@ -109,6 +109,32 @@ const latestTweet = `
 </blockquote>
 `;
 
+const latestTweetTwo = `
+<blockquote class="twitter-tweet" data-theme="dark">
+  <p lang="en" dir="ltr">
+    &#x1F680; Pimp My Portfolio! (Project 2)
+    <br><br>
+    Toy pipelines won't cut it for data engineering / cloud roles&#x274C;
+    <br><br>
+    Built a real Azure lakehouse&#x2705;
+    <br>
+    Terraform &#8226; ADF &#8226; Containers &#8226; dbt
+    <br>
+    Bronze &#8594; Silver &#8594; Gold
+    <br><br>
+    &#x1F517; <a href="https://t.co/ZsUHkO7ozS">https://t.co/ZsUHkO7ozS</a>
+    <a href="https://twitter.com/hashtag/DataEngineering?src=hash&amp;ref_src=twsrc%5Etfw">#DataEngineering</a>
+    <a href="https://twitter.com/hashtag/Azure?src=hash&amp;ref_src=twsrc%5Etfw">#Azure</a>
+    <a href="https://twitter.com/hashtag/Terraform?src=hash&amp;ref_src=twsrc%5Etfw">#Terraform</a>
+    <a href="https://t.co/D6UYRRS9Ps">pic.twitter.com/D6UYRRS9Ps</a>
+  </p>
+  &mdash; Roger Campbell (@_Ch3rry_Pi3_)
+  <a href="https://twitter.com/_Ch3rry_Pi3_/status/2015888233410748915?ref_src=twsrc%5Etfw">
+    January 26, 2026
+  </a>
+</blockquote>
+`;
+
 export default function HomePage() {
   return (
     <>
@@ -189,12 +215,15 @@ export default function HomePage() {
         title="What we’re sharing"
         description="Fresh posts, announcements, and reposts from our latest work."
       >
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-6 lg:grid-cols-3">
           <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">
             <TwitterEmbed html={launchTweet} />
           </div>
           <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">
             <TwitterEmbed html={latestTweet} />
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6 shadow-lg shadow-slate-950/40">
+            <TwitterEmbed html={latestTweetTwo} />
           </div>
         </div>
       </Section>
